@@ -22,13 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-
-// Design Tokens
-val ShoppeBlue = Color(0xFF004CFF)
-val ShoppeBlack = Color(0xFF202020)
-val ShoppeWhite = Color(0xFFFFFFFF)
-val BackgroundGrey = Color(0xFFF9F9F9)
-val TextGrey = Color(0xFF8E8E8E)
+import com.shoppe.android.ui.theme.*
 
 // Product data models
 data class VariationImage(

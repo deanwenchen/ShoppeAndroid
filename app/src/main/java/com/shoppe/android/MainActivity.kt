@@ -106,7 +106,8 @@ fun AppNavigation() {
                     navController.navigate(Screen.PasswordRecoveryPage.route)
                 },
                 onPasswordComplete = {
-                    // Handle wrong password retry
+                    // TODO: Implement wrong password retry logic
+                    // Show error message and reset password input
                 }
             )
         }
@@ -162,7 +163,8 @@ fun AppNavigation() {
                     navController.navigate(Screen.ProductDetailPage.route)
                 },
                 onCategoryClick = { categoryId ->
-                    // Handle category click
+                    // TODO: Implement category navigation
+                    // Navigate to category detail page or filter products
                 }
             )
         }
@@ -173,10 +175,12 @@ fun AppNavigation() {
                     navController.popBackStack()
                 },
                 onAddToCartClick = {
-                    // Handle add to cart
+                    // TODO: Implement add to cart logic
+                    // Show snackbar and update cart count
                 },
                 onBuyNowClick = {
-                    // Handle buy now
+                    // TODO: Implement buy now checkout flow
+                    // Navigate to checkout screen
                 }
             )
         }

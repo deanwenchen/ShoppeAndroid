@@ -18,11 +18,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-
-// Verification code color
-val CodeBlue = Color(0xFF004CFF)
-val CodePink = Color(0xFFFF5790)
-val CodeEmpty = Color(0xFFE5E5E5)
+import com.shoppe.android.ui.theme.ShoppeWhite
+import com.shoppe.android.ui.theme.CodePink
 
 @Composable
 fun PasswordRecoveryCodePage(

@@ -26,15 +26,7 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import kotlinx.coroutines.launch
-
-// Design Tokens
-val ShoppeBlue = Color(0xFF004CFF)
-val ShoppeBlack = Color(0xFF202020)
-val ShoppeWhite = Color(0xFFFFFFFF)
-val BackgroundGrey = Color(0xFFF8F8F8)
-val Grey20 = Color(0xFFD2D2D2)
-val DiscountGradientStart = Color(0xFFFF5790)
-val DiscountGradientEnd = Color(0xFFF81140)
+import com.shoppe.android.ui.theme.*
 
 @Composable
 fun ShopPage(
