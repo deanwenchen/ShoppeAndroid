@@ -18,17 +18,21 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
+import com.shoppe.android.data.model.LoginResult
+import com.shoppe.android.data.model.MockAuthService
 import com.shoppe.android.ui.theme.ShoppeBlack
 import com.shoppe.android.ui.theme.ShoppeBlue
 import com.shoppe.android.ui.theme.ShoppeWhite
 import com.shoppe.android.ui.theme.BackgroundGrey
+import com.shoppe.android.ui.theme.Grey20
 
 @Composable
 fun LoginPage(
-    onNextClick: () -> Unit = {},
+    onNextClick: (String) -> Unit = {},
     onCancelClick: () -> Unit = {}
 ) {
     var email by remember { mutableStateOf("") }
+    var emailError by remember { mutableStateOf<String?>(null) }
 
     Box(
         modifier = Modifier
@@ -88,7 +92,14 @@ fun LoginPage(
             // Email Field
             TextField(
                 value = email,
-                onValueChange = { email = it },
+                onValueChange = {
+                    email = it
+                    // Clear error when user types
+                    if (emailError != null) {
+                        val result = MockAuthService.findUserByEmail(it)
+                        emailError = if (result == null && it.isNotBlank()) "Account not found" else null
+                    }
+                },
                 placeholder = {
                     Text(
                         text = "Email",
@@ -113,7 +124,7 @@ fun LoginPage(
                 singleLine = true
             )
 
-            Spacer(modifier = Modifier.height(88.dp))
+            Spacer(modifier = Modifier.height(24.dp))
 
             // Next Button
             Surface(
@@ -122,7 +133,22 @@ fun LoginPage(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(61.dp)
-                    .clickable { onNextClick() },
+                    .clickable {
+                        when {
+                            email.isBlank() -> {
+                                emailError = "Please enter your email"
+                            }
+                            !MockAuthService.isValidEmail(email) -> {
+                                emailError = "Please enter a valid email address"
+                            }
+                            MockAuthService.findUserByEmail(email) == null -> {
+                                emailError = "Account not found"
+                            }
+                            else -> {
+                                onNextClick(email)
+                            }
+                        }
+                    },
                 shadowElevation = 2.dp
             ) {
                 Box(
@@ -136,6 +162,18 @@ fun LoginPage(
                         color = Color(0xFFF3F3F3)
                     )
                 }
+            }
+
+            // Email error message
+            if (emailError != null) {
+                Spacer(modifier = Modifier.height(12.dp))
+                Text(
+                    text = emailError!!,
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.Light,
+                    color = Color(0xFFB00020),
+                    modifier = Modifier.padding(horizontal = 16.dp)
+                )
             }
 
             Spacer(modifier = Modifier.height(20.dp))

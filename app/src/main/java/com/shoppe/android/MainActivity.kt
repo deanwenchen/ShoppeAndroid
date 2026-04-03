@@ -8,9 +8,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.shoppe.android.navigation.Screen
 import com.shoppe.android.ui.pages.CreateAccountPage
 import com.shoppe.android.ui.pages.HelloCardPage
@@ -72,8 +74,9 @@ fun AppNavigation() {
 
         composable(Screen.LoginPage.route) {
             LoginPage(
-                onDoneClick = {
-                    navController.navigate(Screen.PasswordPage.route)
+                onNextClick = { email ->
+                    // Email validated, navigate to password page with user email
+                    navController.navigate("password_page/$email")
                 },
                 onCancelClick = {
                     navController.popBackStack()
@@ -81,13 +84,27 @@ fun AppNavigation() {
             )
         }
 
-        composable(Screen.PasswordPage.route) {
+        composable(
+            route = "password_page/{email}",
+            arguments = listOf(
+                navArgument("email") { type = NavType.StringType }
+            )
+        ) { backStackEntry ->
+            val email = backStackEntry.arguments?.getString("email") ?: ""
             PasswordPage(
+                userEmail = email,
                 onPasswordComplete = {
-                    navController.navigate(Screen.PasswordTypingPage.route)
+                    // Password correct, navigate to shop page
+                    navController.navigate(Screen.ShopPage.route) {
+                        popUpTo(Screen.StartPage.route) { inclusive = true }
+                    }
                 },
                 onNotYouClick = {
                     navController.popBackStack()
+                },
+                onWrongPassword = {
+                    // Navigate to wrong password page
+                    navController.navigate(Screen.WrongPasswordPage.route)
                 }
             )
         }

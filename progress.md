@@ -31,6 +31,35 @@
 
 ---
 
+## 登录验证功能实现 (2026-04-03)
+
+**新增功能:**
+- ✅ 创建认证数据层 (User.kt, MockAuthService)
+- ✅ 实现 LoginPage 邮箱验证（格式检查、账号存在检查）
+- ✅ 实现 PasswordPage 密码验证（支持 4 位/8 位/错误状态）
+- ✅ 更新导航逻辑传递用户邮箱参数
+
+**测试账号:**
+| 邮箱 | 密码 | 显示名称 |
+|------|------|---------|
+| deanwen@gmail.com | 12345678 | Romina |
+| test@gmail.com | 12345678 | Test User |
+
+**验证流程:**
+1. LoginPage: 输入邮箱 → 验证格式 → 检查账号是否存在
+2. PasswordPage: 输入密码 → 验证密码正确性
+3. 密码正确 → 进入商城首页
+4. 密码错误 → 显示红色 8 点 + "Forgot your password?" 链接
+
+**新增/修改文件:**
+- `app/src/main/java/com/shoppe/android/data/model/User.kt` (新增)
+- `app/src/main/java/com/shoppe/android/ui/pages/LoginPage.kt` (修改)
+- `app/src/main/java/com/shoppe/android/ui/pages/PasswordPage.kt` (修改)
+- `app/src/main/java/com/shoppe/android/MainActivity.kt` (修改)
+- `app/src/main/java/com/shoppe/android/navigation/Screen.kt` (修改)
+
+---
+
 ## Session Log
 
 ### 2026-04-02 - 初始会话

@@ -13,4 +13,10 @@ sealed class Screen(val route: String) {
     object HelloCardPage : Screen("hello_card_page")
     object ShopPage : Screen("shop_page")
     object ProductDetailPage : Screen("product_detail_page")
+
+    companion object {
+        fun passwordPageWithEmail(email: String): String {
+            return "password_page/$email"
+        }
+    }
 }
