@@ -1,6 +1,6 @@
-# Task Plan - Shoppe Android 页面生成
+# Task Plan - Shoppe Android 完整项目
 
-**Goal:** 根据 PRD 和 Figma 设计稿，使用 Jetpack Compose 生成 Android 页面代码
+**Goal:** 创建完整的、可编译的 Android 项目
 
 ## Phases
 
@@ -13,29 +13,62 @@
 | 5 | Android 代码实现 - 生成 Kotlin 文件 | completed | 12/12 完成 |
 | 6 | UI 验证 - 对比 Figma 截图 | completed | 12 页面验证完成 |
 | 7 | 问题修复 - 修复警告和错误 | completed | 移除键盘背景渲染 |
+| 8 | 完整 Android 项目结构 | completed | 可编译的 Gradle 项目 |
 
-## Current Task
-Phase 5: Android 代码实现 - 继续生成剩余 8 个页面
+## 完整项目结构
 
-## Completed Tasks
-- Phase 1: 确定 12 个页面的范围
-- Phase 2: Figma 设计分析
-- Phase 3: Task Planning
-- Phase 4: 组件映射
+```
+ShoppeAndroid/
+├── app/
+│   ├── src/main/
+│   │   ├── java/com/shoppe/android/
+│   │   │   ├── MainActivity.kt
+│   │   │   ├── navigation/Screen.kt
+│   │   │   ├── ui/theme/ (Color, Type, Theme)
+│   │   │   ├── ui/components/ (StatusBar, HomeIndicator, etc.)
+│   │   │   ├── ui/pages/ (12 个页面)
+│   │   │   └── data/model/ (Product, Category, OnboardingPage)
+│   │   ├── res/ (values, xml, drawable, mipmap)
+│   │   └── AndroidManifest.xml
+│   └── build.gradle.kts
+├── gradle/
+│   ├── wrapper/
+│   │   ├── gradle-wrapper.properties
+│   │   └── gradle-wrapper.jar
+│   └── libs.versions.toml
+├── build.gradle.kts (项目级)
+├── settings.gradle.kts
+├── gradle.properties
+├── gradlew.bat
+└── local.properties
+```
 
-## Files Created
-- `codegen/android/StartPage.kt` ✅
-- `codegen/android/CreateAccountPage.kt` ✅
-- `codegen/android/LoginPage.kt` ✅
-- `codegen/android/PasswordPage.kt` ✅
-- `progress.md` ✅
-- `findings.md` ✅
-- `task_plan.md` ✅
+## 编译说明
 
-## Next Steps
-- 生成 05 Password Typing 页面
-- 生成 06 Wrong Password 页面
-- 生成 07-09 密码找回流程页面
-- 生成 11 Hello Card 引导页
-- 生成 15 Shop 商城首页
-- 生成 35 Product 商品详情页
+1. 在 Android Studio 中打开项目
+2. 等待 Gradle 同步完成
+3. 运行 `./gradlew assembleDebug` 生成 APK
+4. 或在 Android Studio 中点击 Run 按钮运行应用
+
+## 设计 Tokens
+
+```kotlin
+ShoppeBlue = #004CFF
+ShoppeBlack = #202020
+ShoppeWhite = #FFFFFF
+BackgroundGrey = #F8F8F8
+Grey20 = #D2D2D2
+CodePink = #FF5790
+```
+
+## Figma 资源
+
+- File Key: `HPtpuBt4RrvXdzDLy4vUN1`
+- 所有 Asset URLs 已提取并用于 AsyncImage 组件
+
+## 下一步优化
+
+1. 下载 Figma 资源到本地 drawable 目录
+2. 更新页面文件使用统一的可复用组件
+3. 添加单元测试
+4. 添加 ProGuard 规则优化

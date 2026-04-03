@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Shoppe Brand Colors -->
+    <color name="shoppe_blue">#FF004CFF</color>
+    <color name="shoppe_black">#FF202020</color>
+    <color name="shoppe_white">#FFFFFFFF</color>
+    <color name="background_grey">#FFF8F8F8</color>
+    <color name="grey_20">#FFD2D2D2</color>
+    <color name="code_pink">#FFFF5790</color>
+
+    <!-- Common Colors -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="transparent">#00000000</color>
+
+    <!-- Status Bar -->
+    <color name="status_bar_background">#00000000</color>
+</resources>

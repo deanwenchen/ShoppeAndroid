@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">Shoppe</string>
+
+    <!-- Screen Names -->
+    <string name="screen_start">Start Page</string>
+    <string name="screen_create_account">Create Account</string>
+    <string name="screen_login">Login</string>
+    <string name="screen_password">Password</string>
+    <string name="screen_password_typing">Password Typing</string>
+    <string name="screen_wrong_password">Wrong Password</string>
+    <string name="screen_password_recovery">Password Recovery</string>
+    <string name="screen_password_recovery_code">Verification Code</string>
+    <string name="screen_new_password">New Password</string>
+    <string name="screen_hello_card">Hello Card</string>
+    <string name="screen_shop">Shop</string>
+    <string name="screen_product_detail">Product Detail</string>
+
+    <!-- Common Strings -->
+    <string name="done">Done</string>
+    <string name="cancel">Cancel</string>
+    <string name="next">Next</string>
+    <string name="save">Save</string>
+    <string name="lets_go">Let\'s Go</string>
+    <string name="lets_get_started">Let\'s get started</string>
+    <string name="i_already_have_an_account">I already have an account</string>
+    <string name="not_you">Not you?</string>
+    <string name="forgot_your_password">Forgot your password?</string>
+    <string name="send_again">Send Again</string>
+    <string name="type_your_password">Type your password</string>
+    <string name="password_recovery">Password Recovery</string>
+
+    <!-- Content Descriptions -->
+    <string name="cd_profile">Profile</string>
+    <string name="cd_logo">Logo</string>
+    <string name="cd_decorative_bubble">Decorative bubble</string>
+    <string name="cd_status_bar">Status bar</string>
+    <string name="cd_home_indicator">Home indicator</string>
+    <string name="cd_password_dot">Password dot</string>
+    <string name="cd_verification_dot">Verification dot</string>
+</resources>
