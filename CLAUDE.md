@@ -1,222 +1,185 @@
-- # 🧠 Claude Operating System（COS）
+# 🧠 Claude Operating System（COS） - Android 专用版
 
-  ------
+------
 
-  # 🚀 1. 启动与上下文恢复
+# 🚀 1. 启动与上下文恢复
 
-  Claude 在以下情况必须执行初始化：
+Claude 在以下情况必须执行初始化：
 
-  - 对话开始
-  - 上下文丢失
-  - 会话重启
+- 对话开始
+- 上下文丢失
+- 会话重启
 
-  ## 📥 必须加载文件
+## 📥 必须加载文件
 
-  - claude.md
-  - task_plan.md
-  - findings.md
-  - progress.md
+- claude.md
+- task_plan.md
+- findings.md
+- progress.md
 
-  ------
+------
 
-  # 📌 2. 文件更新规则（强制）
+# 📌 2. 文件更新规则
 
-  ## 🗂️ task_plan.md（任务计划）
+## 🗂️ task_plan.md（任务计划）
 
-  - 仅在需求新增 / PRD 变更时更新
-  - 禁止执行过程中频繁修改
+- 仅在 PRD 变更或新增页面时更新
+- 执行过程中禁止频繁修改
 
-  ## 🧠 findings.md（决策）
+## 🧠 findings.md（决策）
 
-  - 仅记录架构 / 技术决策
-  - 禁止记录执行过程
+- 仅记录架构 / 技术决策
+- 禁止记录具体执行过程
 
-  ## 📊 progress.md（进度）
+## 📊 progress.md（进度）
 
-  每步必须更新：
+每步必须更新：
 
-  - 已完成内容
-  - 当前状态
-  - 下一步行动
+- 已完成内容
+- 当前状态
+- 下一步行动
 
-  ------
+------
 
-  ## ❗禁止行为
+## ❗禁止行为
 
-  - 不更新 progress.md
-  - 将执行过程写入 findings.md
-  - 三文件同时重写
+- 不更新 progress.md
+- 将执行过程写入 findings.md
+- 三文件同时重写
 
-  ------
+------
 
-  # 🔌 3. 工具使用规范
+# 🎨 3. Figma（UI 唯一事实源）
 
-  ## OpenSpec（仅需求输入）
+- 所有 UI 开发必须基于 Figma 设计稿
+- 禁止凭空实现 UI
+- 输出组件必须与设计稿一致
 
-  允许：
+------
 
-  - 用户故事
-  - 验收标准
-  - 功能描述
+# 🧠 4. 系统能力
 
-  禁止：
+Claude 是具备以下能力的工程代理：
 
-  - 写 task_plan.md
-  - 写 progress.md
-  - 生成代码
+- Planning（规划）
+- Reasoning（推理）
+- Execution（执行）
+- Tracking（记录）
 
-  流程：
+------
 
-  OpenSpec → Brainstorm → 用户确认 → 执行
+# 🎨 5. Design Layer（设计驱动）
 
-  ------
+## Figma → Code（强制流程）
 
-  ## 🎨 Figma（UI 唯一事实源）
+Figma → Design Analysis → Component → Code
 
-  当涉及 UI：
+### Design Analysis 必须包含：
 
-  - 必须基于 Figma 实现
-  - 禁止凭空写 UI
+- 页面结构（Layout）
+- 组件拆解（Component）
+- 样式（颜色 / 字体 / 间距）
+- 交互（状态 / 动效）
 
-  ------
+## ❗禁止
 
-  # 🧠 4. 系统能力
+- 未分析设计稿直接开发
+- UI 与设计稿不一致
 
-  Claude 是具备以下能力的工程代理：
+------
 
-  - Planning（规划）
-  - Reasoning（推理）
-  - Execution（执行）
-  - Tracking（记录）
+# 📁 6. Task Planning（强制）
 
-  ------
+触发条件：
 
-  # 🎨 5. Design Layer（设计驱动）
+- PRD 新增
+- PRD 结构变化
 
-  ## Figma → Code（强制流程）
+执行流程：
 
-  Figma → Design Analysis → Component → Code
+PRD → Task Planning → task_plan.md
 
-  ------
+约束：
 
-  ## Design Analysis 必须包含：
+- 未生成 task_plan.md 禁止写代码
+- 不允许跳过任务拆解
 
-  - 页面结构（Layout）
-  - 组件拆解（Component）
-  - 样式（颜色 / 字体 / 间距）
-  - 交互（状态 / 动效）
+------
 
-  ------
+# 🔄 7. 标准执行流程（强制）
 
-  ## ❗禁止
+1. Brainstorm
+2. 用户确认
+3. PRD 更新（如有）
+4. 🎨 Figma 分析（UI 必须）
+5. Task Planning
+6. 组件映射（Design → Code）
+7. Android 代码实现（Jetpack Compose）
+8. Artifact 落地
+9. UI 验证
+10. 更新 progress.md
 
-  - 未分析设计稿直接开发
-  - UI 与设计稿不一致
+------
 
-  ------
+# 📊 8. 输出要求
 
-  # 📁 6. Task Planning（强制）
+每次必须输出状态对齐报告：
 
-  触发条件：
+- 当前任务
+- 已完成进度
+- 下一步行动
 
-  - PRD 新增
-  - PRD 结构变化
+------
 
-  ------
+# 🧠 9. 落盘机制
 
-  ## 执行流程
+必须写入：
 
-  PRD → Task Planning → task_plan.md
+- task_plan.md（任务）
+- findings.md（决策）
+- progress.md（进度）
 
-  ------
+写入格式：
 
-  ## ❗约束
+=== WRITE_FILE: filename ===
+content
+=== END ===
 
-  - 未生成 task_plan.md 禁止写代码
-  - 不允许跳过任务拆解
+------
 
-  ------
+# 🎯 10. Android UI 实现标准（强制）
 
-  # 🔄 7. 标准执行流程（强制）
+## 视觉一致
 
-  1. Brainstorm
-  2. 用户确认
-  3. PRD 更新（如有）
-  4. 🎨 Figma 分析（UI 必须）
-  5. Task Planning
-  6. 组件映射（Design → Code）
-  7. 代码实现
-  8. Artifact 落地
-  9. UI 验证
-  10. 更新 progress.md
+- 布局 / 间距 / 对齐一致
+- 字体 / 颜色一致
 
-  ------
+## 组件一致
 
-  # 📊 8. 输出要求
+- 结构必须匹配设计稿
+- 必须可复用
 
-  每次必须输出：
+## 交互一致
 
-  [状态对齐报告]
+- 状态完整（hover / active / disabled）
+- 动效必须实现
 
-  - 当前任务：
-  - 已完成进度：
-  - 下一步行动：
+## ❗原则
 
-  ------
+- 不允许“接近实现”
+- 必须精确还原
 
-  # 🧠 9. 落盘机制
+------
 
-  必须写入：
+# 🚨 11. 核心约束
 
-  - task_plan.md（任务）
-  - findings.md（决策）
-  - progress.md（进度）
+- 禁止跳步骤执行
+- 禁止未确认直接开发
+- 禁止自动提交 Git
+- 所有结果必须可追溯
 
-  ------
+------
 
-  ## 写入格式
+# 🔄 执行闭环
 
-  === WRITE_FILE: filename ===
-  content
-  === END ===
-
-  ------
-
-  # 🎯 10. UI 实现标准（强制）
-
-  ## 视觉一致
-
-  - 布局 / 间距 / 对齐一致
-  - 字体 / 颜色一致
-
-  ## 组件一致
-
-  - 结构必须匹配设计稿
-  - 必须可复用
-
-  ## 交互一致
-
-  - 状态完整（hover / active / disabled）
-  - 动效必须实现
-
-  ------
-
-  ## ❗原则
-
-  - 不允许“接近实现”
-  - 必须精确还原
-
-  ------
-
-  # 🚨 11. 核心约束
-
-  - 禁止跳步骤执行
-  - 禁止未确认直接开发
-  - 禁止自动提交 Git
-  - 所有结果必须可追溯
-
-  ------
-
-  # 🔄 执行闭环
-
-  Plan → Findings → Execute → Progress
+Plan → Findings → Execute → Progress

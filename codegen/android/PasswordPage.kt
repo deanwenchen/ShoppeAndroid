@@ -1,0 +1,260 @@
+package com.shoppe.android.ui.pages
+
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
+import coil.request.ImageRequest
+
+@Composable
+fun PasswordPage(
+    onNotYouClick: () -> Unit = {},
+    onPasswordComplete: (String) -> Unit = {}
+) {
+    var password by remember { mutableStateOf("") }
+
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(ShoppeWhite)
+    ) {
+        // Status Bar
+        StatusBar()
+
+        // Decorative Bubbles
+        DecorativeBubblesPassword()
+
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(horizontal = 20.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Spacer(modifier = Modifier.height(120.dp))
+
+            // Profile Image
+            ProfileImage()
+
+            Spacer(modifier = Modifier.height(24.dp))
+
+            // Greeting
+            Text(
+                text = "Hello, Romina!!",
+                fontSize = 28.sp,
+                fontWeight = FontWeight.Bold,
+                color = ShoppeBlack,
+                letterSpacing = (-0.28).sp
+            )
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            // Subtitle
+            Text(
+                text = "Type your password",
+                fontSize = 19.sp,
+                fontWeight = FontWeight.Light,
+                color = ShoppeBlack,
+                lineHeight = 35.sp
+            )
+
+            Spacer(modifier = Modifier.height(40.dp))
+
+            // Password Dots (4 dots initial state)
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(5.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                for (i in 0 until 4) {
+                    Box(
+                        modifier = Modifier
+                            .size(50.dp)
+                            .clip(RoundedCornerShape(10.dp))
+                            .background(BackgroundGrey)
+                    )
+                }
+            }
+
+            Spacer(modifier = Modifier.height(280.dp))
+
+            // Not you? link with arrow button
+            Row(
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.clickable { onNotYouClick() }
+            ) {
+                Text(
+                    text = "Not you?",
+                    fontSize = 15.sp,
+                    fontWeight = FontWeight.Light,
+                    color = ShoppeBlack.copy(alpha = 0.9f)
+                )
+
+                Spacer(modifier = Modifier.width(8.dp))
+
+                // Arrow button
+                Box(
+                    modifier = Modifier.size(30.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    AsyncImage(
+                        model = ImageRequest.Builder(LocalContext.current)
+                            .data("https://www.figma.com/api/mcp/asset/f357ee9e-3646-4d9b-8c0a-fd6ea102eec5")
+                            .build(),
+                        contentDescription = "Arrow",
+                        modifier = Modifier.size(24.dp)
+                    )
+                }
+            }
+        }
+
+        // Hidden password input
+        PasswordInputField(
+            value = password,
+            onValueChange = { newValue ->
+                if (newValue.length <= 4) {
+                    password = newValue
+                    if (newValue.length == 4) {
+                        // Transition to 8-dot state
+                        onPasswordComplete(newValue)
+                    }
+                }
+            }
+        )
+    }
+}
+
+@Composable
+private fun ProfileImage() {
+    Box(
+        modifier = Modifier
+            .size(106.dp)
+            .clip(CircleShape)
+            .background(Color(0xFFFFF0F5))
+    ) {
+        AsyncImage(
+            model = ImageRequest.Builder(LocalContext.current)
+                .data("https://www.figma.com/api/mcp/asset/e7b51c67-88a6-4113-a4da-1e51eebde31d")
+                .build(),
+            contentDescription = "Profile",
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(8.dp),
+            contentScale = ContentScale.Crop
+        )
+    }
+}
+
+@Composable
+private fun DecorativeBubblesPassword() {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+    ) {
+        // Bubble 02
+        AsyncImage(
+            model = ImageRequest.Builder(LocalContext.current)
+                .data("https://www.figma.com/api/mcp/asset/6ac659c3-1705-4533-b908-27a3e2fd11a5")
+                .build(),
+            contentDescription = "Decorative bubble",
+            modifier = Modifier
+                .offset(x = (-137).dp, y = (-172).dp)
+                .size(374.dp, 443.dp)
+                .rotate(158f),
+            contentScale = ContentScale.Crop,
+            alpha = 0.5f
+        )
+
+        // Bubble 01
+        AsyncImage(
+            model = ImageRequest.Builder(LocalContext.current)
+                .data("https://www.figma.com/api/mcp/asset/5d4b2916-a5b5-40ef-83b7-b229fd7e84ea")
+                .build(),
+            contentDescription = "Decorative bubble",
+            modifier = Modifier
+                .offset(x = (-158).dp, y = (-171).dp)
+                .size(403.dp, 443.dp),
+            contentScale = ContentScale.Crop,
+            alpha = 0.5f
+        )
+    }
+}
+
+@Composable
+private fun PasswordInputField(
+    value: String,
+    onValueChange: (String) -> Unit
+) {
+    TextField(
+        value = value,
+        onValueChange = onValueChange,
+        modifier = Modifier
+            .size(1.dp)
+            .alpha(0.01f),
+        keyboardInput = true,
+        singleLine = true,
+        maxLines = 1
+    )
+}
+
+@Composable
+private fun StatusBar() {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(44.dp)
+            .padding(horizontal = 16.dp)
+    ) {
+        Row(
+            modifier = Modifier.fillMaxSize(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                text = "9:41",
+                fontSize = 14.sp,
+                fontWeight = FontWeight.SemiBold,
+                color = Color.Black
+            )
+
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(4.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                AsyncImage(
+                    model = ImageRequest.Builder(LocalContext.current)
+                        .data("https://www.figma.com/api/mcp/asset/2a46432f-6257-409f-beb7-3bd5377ac51e")
+                        .build(),
+                    contentDescription = "Cellular",
+                    modifier = Modifier.size(17.dp, 11.dp)
+                )
+                AsyncImage(
+                    model = ImageRequest.Builder(LocalContext.current)
+                        .data("https://www.figma.com/api/mcp/asset/243249db-91d2-421c-8bd2-fab871d87797")
+                        .build(),
+                    contentDescription = "Wifi",
+                    modifier = Modifier.size(15.dp, 11.dp)
+                )
+                AsyncImage(
+                    model = ImageRequest.Builder(LocalContext.current)
+                        .data("https://www.figma.com/api/mcp/asset/f386b4f9-7c82-4c05-8324-43bcc839d9ac")
+                        .build(),
+                    contentDescription = "Battery",
+                    modifier = Modifier.size(24.dp, 11.dp)
+                )
+            }
+        }
+    }
+}
