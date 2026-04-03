@@ -18,6 +18,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
+import com.shoppe.android.ui.theme.ShoppeBlack
+import com.shoppe.android.ui.theme.ShoppeWhite
+import com.shoppe.android.ui.theme.BackgroundGrey
 
 @Composable
 fun PasswordPage(

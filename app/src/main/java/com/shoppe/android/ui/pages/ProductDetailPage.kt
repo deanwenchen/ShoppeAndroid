@@ -232,7 +232,7 @@ fun ProductImageCarousel(
                     modifier = Modifier
                         .size(10.dp)
                         .clip(RoundedCornerShape(5.dp))
-                        .background(if (i == currentPage) ShoppeBlue else Color(0xFFD2D2D2))
+                        .background(if (i == currentPage) ShoppeBlue else Grey20)
                 )
                 if (i < totalImages - 1) {
                     Spacer(modifier = Modifier.width(10.dp))
